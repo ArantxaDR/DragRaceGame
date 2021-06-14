@@ -1,4 +1,5 @@
 import { css, html, LitElement } from "lit";
+// import Rupaul from "./../../assets/images/rupaul.png";
 
 export class HomePage extends LitElement {
   static get styles() {
@@ -24,6 +25,7 @@ export class HomePage extends LitElement {
   }
 
   render() {
+    // const Rupaul = html``;
     return html`
       <div class="main-content">
         <h3 class="main-content_title">

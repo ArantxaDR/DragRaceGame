@@ -8,43 +8,60 @@ export class QueensComponent extends LitElement {
   }
 
   static get properties() {
-    return { hello: { type: String }, queens: { type: Object } };
+    return { queens: { type: Object } };
   }
 
   static get styles() {
     return css`
-      :host {
-        display: block;
+      #queens {
         border: pink solid 3px;
+        font-family: "Fira Code";
       }
-      p {
-        color: var(--color-queens, blue);
+
+      .queens-title {
+        font-family: "Kotta One", serif;
+        text-align: center;
       }
+      .queens-card {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+      }
+      .queens-image {
+        width: 15%;
+        height: 20%;
+      }
+
       li::marker {
         content: "👑";
-      }
-      ::slotted(p) {
-        color: red;
       }
     `;
   }
 
   async connectedCallback() {
     super.connectedCallback();
-    this.hello = this.getAttribute("hello") || "Hello, hello, hello";
     this.queens = await this.service.getQueens();
   }
 
   render() {
-    return html` <p part="hello">${this.hello} SHADOW</p>
-      <slot></slot>
-      <button @click="${(e) => this.clickMe(e)}>">WIN</button>
-      <div id="queens">
+    return html` <div id="queens">
+      <h3 class="queens-title">Meet the ladies</h3>
+      <div class="queens-card">
         <ul>
           ${this.queens &&
-          this.queens.data.map((queen) => html`<li>${queen.name}</li>`)}
+          this.queens.data.map(
+            (queen) =>
+              html`<img
+                  class="queens-image"
+                  src=${queen.image_url}
+                  alt=${queen.name}
+                />
+                <li>${queen.name}</li>`
+          )}
         </ul>
-      </div>`;
+      </div>
+      <button @click="${(e) => this.clickMe(e)}>">WIN</button>
+    </div>`;
   }
 
   clickMe(e) {
