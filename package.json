@@ -64,6 +64,7 @@
   "dependencies": {
     "@vaadin/router": "^1.7.4",
     "axios": "^0.21.1",
+    "file-loader": "^6.2.0",
     "lit": "^2.0.0-rc.2"
   }
 }
