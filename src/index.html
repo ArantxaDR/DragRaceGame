@@ -7,10 +7,13 @@
     <title>Drag Race</title>
   </head>
   <body>
-    <nav>
-      <a href="/">Home</a>
-      <a href="/queens">Queens</a>
-    </nav>
-    <main id="outlet"></main>
+    <holy-layout>
+      <h2 slot="header">Drag Race Game</h2>
+      <nav slot="nav">
+        <a href="/">Home</a>
+        <a href="/queens">Queens</a>
+      </nav>
+      <main slot="section" id="outlet"></main>
+    </holy-layout>
   </body>
 </html>
