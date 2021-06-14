@@ -1,43 +1,50 @@
+import { html, LitElement, render, css } from "lit";
 import { QueensService } from "./queens.service";
 
-export class QueensComponent extends HTMLElement {
+export class QueensComponent extends LitElement {
   constructor() {
     super();
     this.service = new QueensService();
   }
-  async connectedCallback() {
-    this.queens = await this.service.getQueens();
-    this.hello = this.getAttribute("hello") || "Hello, hello, hello";
 
-    this.attachShadow({ mode: "open" });
-    this.shadowRoot.innerHTML = `
-        <style>
-            :host{
-                display: block;
-                border: pink solid 3px;
-            }
-            p {
-                color: var(--color-queens, blue);
-            }
-            ::slotted(p){
-                color: red;
-            }
-        </style>   
-        <p part="hello">${this.hello} SHADOW</p>
-        <slot></slot>
-        <button>WIN</button>
-        <div id="queens">
-            <ul>${this.queens.data
-              .map(
-                (queen) => `
-                <li>${queen.image_url}</li>`
-              )
-              .join("")}
-            </ul>
-        </div>
-        `;
-    this.button = this.shadowRoot.querySelector("button");
-    this.button.onclick = (e) => this.clickMe(e);
+  static get properties() {
+    return { hello: { type: String }, queens: { type: Object } };
+  }
+
+  static get styles() {
+    return css`
+      :host {
+        display: block;
+        border: pink solid 3px;
+      }
+      p {
+        color: var(--color-queens, blue);
+      }
+      li::marker {
+        content: "👑";
+      }
+      ::slotted(p) {
+        color: red;
+      }
+    `;
+  }
+
+  async connectedCallback() {
+    super.connectedCallback();
+    this.hello = this.getAttribute("hello") || "Hello, hello, hello";
+    this.queens = await this.service.getQueens();
+  }
+
+  render() {
+    return html` <p part="hello">${this.hello} SHADOW</p>
+      <slot></slot>
+      <button @click="${(e) => this.clickMe(e)}>">WIN</button>
+      <div id="queens">
+        <ul>
+          ${this.queens &&
+          this.queens.data.map((queen) => html`<li>${queen.name}</li>`)}
+        </ul>
+      </div>`;
   }
 
   clickMe(e) {
