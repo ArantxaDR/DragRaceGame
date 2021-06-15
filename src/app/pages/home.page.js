@@ -1,5 +1,4 @@
 import { css, html, LitElement } from "lit";
-// import Rupaul from "./../../assets/images/rupaul.png";
 
 export class HomePage extends LitElement {
   static get styles() {

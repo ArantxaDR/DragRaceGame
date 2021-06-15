@@ -13,8 +13,8 @@ export class HolyLayout extends LitElement {
         min-height: 100vh;
         display: grid;
         grid-template-columns: 100%;
-        grid-template-rows: 100px 35px 1fr 100px 200px;
-        grid-template-areas: "my-header my-header my-header" "my-nav my-nav my-nav" "my-main my-main my-main" "my-aside my-aside my-aside" "my-footer my-footer my-footer";
+        grid-template-rows: 100px 35px 1fr 100px;
+        grid-template-areas: "my-header my-header my-header" "my-nav my-nav my-nav" "my-main my-main my-main" "my-footer my-footer my-footer";
       }
 
       #holy-header {
@@ -53,42 +53,42 @@ export class HolyLayout extends LitElement {
           #00f9ff 96.67%,
           #00f8ff 100%
         );
+        justify-content: center;
       }
 
       #holy-nav {
         grid-area: my-nav;
-        background-color: var(--holy-nav-background-color, cornflowerblue);
-      }
-
-      #holy-aside {
-        grid-area: my-aside;
-        background-color: var(--holy-aside-background-color, darkmagenta);
+        background-color: var(--holy-nav-background-color, #9df5e6);
       }
 
       #holy-content {
         padding: 1rem;
         grid-area: my-main;
-        background-color: var(--home-background-color, lightblue);
+        background-color: var(--home-background-color, #c5f3e0);
       }
 
       #holy-footer {
         grid-area: my-footer;
-        background-color: var(--holy-footer-background-color, darkorchid);
+        background-color: var(--holy-footer-background-color, #fcfa9d);
       }
 
       @media (min-width: 600px) and (max-width: 1000px) {
         #holy {
-          grid-template-columns: 200px 1fr 200px;
+          grid-template-columns: 50px 1fr 50px;
           grid-template-rows: 50px 1fr 1fr 50px;
-          grid-template-areas: "my-header my-header my-header" "my-nav my-nav my-nav" "my-aside my-main my-main" "my-footer my-footer my-footer";
+          grid-template-areas: "my-header my-header my-header" "my-nav my-main my-main" "my-main my-main my-main" "my-footer my-footer my-footer";
         }
       }
 
       @media (min-width: 1001px) {
         #holy {
-          grid-template-columns: 200px 1fr 200px;
+          grid-template-columns: 100px 1fr 50px;
           grid-template-rows: 50px 1fr 50px;
-          grid-template-areas: "my-header my-header my-header" "my-nav my-main my-aside" "my-footer my-footer my-footer";
+          grid-template-areas: "my-header my-header my-header" "my-nav my-main my-main" "my-footer my-footer my-footer";
+        }
+        #holy-nav {
+          display: flex;
+          flex-direction: column;
         }
       }
     `;
@@ -106,9 +106,6 @@ export class HolyLayout extends LitElement {
         <main id="holy-content" role="main">
           <slot name="section"></slot>
         </main>
-        <aside id="holy-aside" role="complementary">
-          <slot name="aside"></slot>
-        </aside>
         <footer id="holy-footer" role="contentinfo">
           <slot name="footer"></slot>
         </footer>
