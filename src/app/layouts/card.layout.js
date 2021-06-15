@@ -11,10 +11,9 @@ export class CardLayout extends LitElement {
         display: inline-block;
         list-style: none;
         width: 45%;
-        height: 200px;
         margin: 0 auto;
         padding: 4rem 1rem 7rem 1rem;
-        background-color: #ff89a4;
+        background-color: #bb183e;
         position: relative;
         &:after {
           content: "";
@@ -57,12 +56,18 @@ export class CardLayout extends LitElement {
         font-weight: 400;
         text-transform: uppercase;
         letter-spacing: 1px;
+        font-family: "Niconne";
       }
-
+      #card-img {
+        width: 5rem;
+        height: 10rem;
+        border-radius: 15%;
+      }
       #card-text {
         color: snow;
         font-size: 0.9rem;
         line-height: 140%;
+        font-family: "Kotta One", serif;
       }
     `;
   }
@@ -71,12 +76,15 @@ export class CardLayout extends LitElement {
     return html`
       <div id="card">
         <slot name="card"></slot>
-        <h4 id="card-title">
+        <div id="card-title">
           <slot name="card-title"></slot>
-        </h4>
-        <p id="card-text">
+        </div>
+        <div id="card-img">
+          <slot name="card-img"></slot>
+        </div>
+        <div id="card-text">
           <slot name="card-text"></slot>
-        </p>
+        </div>
       </div>
     `;
   }

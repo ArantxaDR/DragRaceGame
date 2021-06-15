@@ -7,6 +7,7 @@ import "./app/pages/game.page";
 import { Router } from "@vaadin/router";
 
 import "./app/layouts/holy.layout";
+import "./app/layouts/card.layout";
 
 const outlet = document.getElementById("outlet");
 const router = new Router(outlet);

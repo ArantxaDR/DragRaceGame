@@ -4,7 +4,9 @@ export class QueensPage extends HTMLElement {
   }
   connectedCallback() {
     this.innerHTML = `
-    <drag-queens></drag-queens>`;
+    <drag-queens>
+    
+    </drag-queens>`;
   }
 }
 

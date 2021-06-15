@@ -19,6 +19,37 @@ export class HolyLayout extends LitElement {
 
       #holy-header {
         grid-area: my-header;
+        background-color: var(--holy-nav-background-color, #e24d5c);
+        text-align: center;
+        padding-top: 1rem;
+        color: #fff2dd;
+        font-family: "Niconne", cursive;
+        font-size: 2rem;
+        font-weight: 700;
+        text-shadow: 5px 5px 0px #eb452b, 10px 10px 0px #efa032,
+          15px 15px 0px #46b59b, 20px 20px 0px #017e7f, 25px 25px 0px #052939,
+          30px 30px 0px #c11a2b, 35px 35px 0px #c11a2b;
+      }
+
+      #holy-nav {
+        grid-area: my-nav;
+        background-color: var(--holy-nav-background-color, #81f3e0);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        align-content: center;
+        justify-content: space-around;
+        font-family: "Kotta One", serif;
+      }
+
+      #holy-content {
+        padding: 1rem;
+        grid-area: my-main;
+        background-color: var(--home-background-color, #c5f3e0);
+      }
+
+      #holy-footer {
+        grid-area: my-footer;
         background-image: linear-gradient(
           270deg,
           #ff99ff 0,
@@ -53,42 +84,24 @@ export class HolyLayout extends LitElement {
           #00f9ff 96.67%,
           #00f8ff 100%
         );
-        justify-content: center;
-      }
-
-      #holy-nav {
-        grid-area: my-nav;
-        background-color: var(--holy-nav-background-color, #9df5e6);
-      }
-
-      #holy-content {
-        padding: 1rem;
-        grid-area: my-main;
-        background-color: var(--home-background-color, #c5f3e0);
-      }
-
-      #holy-footer {
-        grid-area: my-footer;
-        background-color: var(--holy-footer-background-color, #fcfa9d);
+        padding-left: 2rem;
+        padding-top: 0.5rem;
+        font-family: "Niconne";
       }
 
       @media (min-width: 600px) and (max-width: 1000px) {
         #holy {
           grid-template-columns: 50px 1fr 50px;
-          grid-template-rows: 50px 1fr 1fr 50px;
-          grid-template-areas: "my-header my-header my-header" "my-nav my-main my-main" "my-main my-main my-main" "my-footer my-footer my-footer";
+          grid-template-rows: 100px 35px 1fr 50px;
+          grid-template-areas: "my-header my-header my-header" "my-nav my-nav my-nav" "my-main my-main my-main" "my-footer my-footer my-footer";
         }
       }
 
       @media (min-width: 1001px) {
         #holy {
           grid-template-columns: 100px 1fr 50px;
-          grid-template-rows: 50px 1fr 50px;
-          grid-template-areas: "my-header my-header my-header" "my-nav my-main my-main" "my-footer my-footer my-footer";
-        }
-        #holy-nav {
-          display: flex;
-          flex-direction: column;
+          grid-template-rows: 120px 35px 1fr 35px;
+          grid-template-areas: "my-header my-header my-header" "my-nav my-nav my-nav" "my-main my-main my-main" " my-footer  my-footer my-footer";
         }
       }
     `;
@@ -98,7 +111,9 @@ export class HolyLayout extends LitElement {
     return html`
       <div id="holy">
         <header id="holy-header" role="banner">
-          <slot name="header"></slot>
+          <slot name="header">
+            <img src="myLogo" alt="RuPaul's Drag Race logo" />
+          </slot>
         </header>
         <nav id="holy-nav">
           <slot name="nav"></slot>

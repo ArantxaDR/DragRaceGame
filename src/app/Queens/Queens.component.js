@@ -16,7 +16,6 @@ export class QueensComponent extends LitElement {
     return css`
       #queens {
         border: pink dotted 3px;
-        font-family: "Fira Code";
       }
 
       .queens-title {
@@ -29,11 +28,6 @@ export class QueensComponent extends LitElement {
         grid-template-rows: repeat(5, 1fr);
         gap: 0.5rem;
         margin-right: 1rem;
-      }
-      .queens-image {
-        width: 10rem;
-        height: 15rem;
-        border-radius: 15%;
       }
 
       @media (min-width: 600px) and (max-width: 1000px) {
@@ -50,9 +44,6 @@ export class QueensComponent extends LitElement {
           gap: 0.5rem;
         }
       }
-      /* .card {
-        background-color: yellow;
-      } */
     `;
   }
 
@@ -72,11 +63,7 @@ export class QueensComponent extends LitElement {
             html`<card-layout>
               <div slot="card">
                 <h4 slot="card-title">${queen.name}</h4>
-                <img
-                  class="queens-image"
-                  src=${queen.image_url}
-                  alt=${queen.name}
-                />
+                <img slot="card-img" src=${queen.image_url} alt=${queen.name} />
                 <p slot="card-text">${queen.quote}</p>
               </div>
             </card-layout>`

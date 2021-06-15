@@ -1,15 +1,16 @@
 import { css, html, LitElement } from "lit";
+import Rupaul from "./../../assets/images/rupaul.png";
 
 export class HomePage extends LitElement {
   static get styles() {
     return css`
       .main-content {
-        font-family: "Fira Code";
-        line-height: 250%;
+        font-family: "Kotta One", serif;
+        line-height: 150%;
       }
       .main-content_title {
         text-align: center;
-        font-family: "Kotta One", serif;
+        font-family: "Niconne";
       }
       .main-content_title2 {
         text-align: center;
@@ -27,9 +28,9 @@ export class HomePage extends LitElement {
     // const Rupaul = html``;
     return html`
       <div class="main-content">
-        <h3 class="main-content_title">
+        <h2 class="main-content_title">
           Welcome to RuPaul's DragRace fan page
-        </h3>
+        </h2>
         <h5 class="main-content_title2">We're here to celebrate diversity</h5>
         <p class="main-content_text">
           This is an American reality competition television series, the first
