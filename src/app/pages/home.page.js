@@ -1,5 +1,5 @@
 import { css, html, LitElement } from "lit";
-import Rupaul from "./../../assets/images/rupaul.png";
+import "./../../assets/images/rupaul.png";
 
 export class HomePage extends LitElement {
   static get styles() {
@@ -17,6 +17,24 @@ export class HomePage extends LitElement {
       }
       .main-content_text {
         text-align: left;
+        padding: 0.9rem;
+      }
+      .main-content_image {
+        width: 16rem;
+        height: 15rem;
+        position: relative;
+        margin-bottom: -4px;
+        margin-left: 39px;
+      }
+      @media (min-width: 600px) and (max-width: 1000px) {
+        .main-content_image {
+          margin-left: 150px;
+        }
+      }
+      @media (min-width: 1001px) {
+        .main-content_image {
+          margin-left: 350px;
+        }
       }
     `;
   }
@@ -42,12 +60,12 @@ export class HomePage extends LitElement {
           The title of the show is a play on drag queen and drag racing, and the
           title sequence and song "Drag Race" both have a drag-racing theme.
         </p>
-        <img
-          class="main-content_image"
-          src="./../../assets/images/rupaul.png"
-          alt="RuPaul in full drag"
-        />
       </div>
+      <img
+        class="main-content_image"
+        src="./../../assets/images/rupaul.png"
+        alt="RuPaul in full drag"
+      />
     `;
   }
 }

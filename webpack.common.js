@@ -12,15 +12,16 @@ module.exports = {
     rules: [
       {
         test: /\.(png|jpe?g|gif)$/i,
-        use: [
-          {
-            loader: "file-loader",
-            options: {
-              regExp: /\/([a-z0-9]+)\/[a-z0-9]+\.png$/i,
-              name: "[1]-[name].[ext]"
-            }
-          }
-        ]
+        // use: [
+        //   {
+        //     loader: "file-loader",
+        //     options: {
+        //       regExp: /\/([a-z0-9]+)\/[a-z0-9]+\.png$/i,
+        //       name: "[1]-[name].[ext]"
+        //     }
+        //   }
+        // ]
+        use: "file-loader?name=./assets/images/[name].[ext]"
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,

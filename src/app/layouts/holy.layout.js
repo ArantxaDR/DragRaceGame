@@ -1,4 +1,5 @@
 import { css, html, LitElement } from "lit";
+import "./../../assets/icons/pride-icon.png";
 
 export class HolyLayout extends LitElement {
   constructor() {
@@ -13,7 +14,7 @@ export class HolyLayout extends LitElement {
         min-height: 100vh;
         display: grid;
         grid-template-columns: 100%;
-        grid-template-rows: 100px 35px 1fr 100px;
+        grid-template-rows: 100px 35px 1fr 50px;
         grid-template-areas: "my-header my-header my-header" "my-nav my-nav my-nav" "my-main my-main my-main" "my-footer my-footer my-footer";
       }
 
@@ -21,7 +22,7 @@ export class HolyLayout extends LitElement {
         grid-area: my-header;
         background-color: var(--holy-nav-background-color, #e24d5c);
         text-align: center;
-        padding-top: 1rem;
+        padding-top: 0.5rem;
         color: #fff2dd;
         font-family: "Niconne", cursive;
         font-size: 2rem;
@@ -43,7 +44,6 @@ export class HolyLayout extends LitElement {
       }
 
       #holy-content {
-        padding: 1rem;
         grid-area: my-main;
         background-color: var(--home-background-color, #c5f3e0);
       }
@@ -86,7 +86,7 @@ export class HolyLayout extends LitElement {
         );
         padding-left: 2rem;
         padding-top: 0.5rem;
-        font-family: "Niconne";
+        font-family: "Kotta One", serif;
       }
 
       @media (min-width: 600px) and (max-width: 1000px) {
