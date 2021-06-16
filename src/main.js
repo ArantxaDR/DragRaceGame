@@ -1,13 +1,13 @@
 import "./main.css";
 
 import "./app/Queens/Queens.component";
+import "./app/game/gameMemory.component";
 import "./app/pages/home.page";
 import "./app/pages/queens.page";
-import "./app/pages/game.page";
+import "./app/pages/gameMemory.page";
 import { Router } from "@vaadin/router";
 
 import "./app/layouts/holy.layout";
-import "./app/layouts/card.layout";
 
 const outlet = document.getElementById("outlet");
 const router = new Router(outlet);

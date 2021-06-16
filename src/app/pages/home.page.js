@@ -11,17 +11,21 @@ export class HomePage extends LitElement {
       .main-content_title {
         text-align: center;
         font-family: "Niconne";
+        color: darkred;
+        font-size: xx-large;
       }
       .main-content_title2 {
         text-align: center;
+        color: #2b1010;
       }
       .main-content_text {
         text-align: left;
         padding: 0.9rem;
+        color: #2b1010;
       }
       .main-content_image {
-        width: 16rem;
-        height: 15rem;
+        width: 10rem;
+        height: 13rem;
         position: relative;
         margin-bottom: -4px;
         margin-left: 39px;
@@ -43,13 +47,10 @@ export class HomePage extends LitElement {
   }
 
   render() {
-    // const Rupaul = html``;
     return html`
       <div class="main-content">
-        <h2 class="main-content_title">
-          Welcome to RuPaul's DragRace fan page
-        </h2>
-        <h5 class="main-content_title2">We're here to celebrate diversity</h5>
+        <h2 class="main-content_title">Welcome to RuPaul's DragRace</h2>
+        <h4 class="main-content_title2">Reading is Fun-da-men-tal!!</h4>
         <p class="main-content_text">
           This is an American reality competition television series, the first
           in the Drag Race franchise. The show documents RuPaul in the search
