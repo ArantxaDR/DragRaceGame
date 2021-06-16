@@ -108,20 +108,7 @@ export class QueensComponent extends LitElement {
           </div>`
         )}
       </div>
-      <!-- 
-      <button @click="${(e) => this.clickMe(e)}>">WIN</button> -->
     </div>`;
-  }
-
-  clickMe(e) {
-    console.log(e);
-    const message = new CustomEvent("queens:message", {
-      bubbles: true,
-      detail: {
-        msg: "BAAAM"
-      }
-    });
-    this.dispatchEvent(message);
   }
 }
 

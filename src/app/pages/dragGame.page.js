@@ -1,12 +1,10 @@
-import { html, LitElement } from "lit";
-
-class DragGame extends LitElement {
+class DragGame extends HTMLElement {
   constructor() {
     super();
   }
 
-  render() {
-    return html` <h1>Are you a winner?</h1> `;
+  connectedCallback() {
+    this.innerHTML = ` <drag-memory></drag-memory> `;
   }
 }
 customElements.define("drag-game-page", DragGame);
