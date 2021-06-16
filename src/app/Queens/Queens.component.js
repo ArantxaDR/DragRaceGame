@@ -97,7 +97,7 @@ export class QueensComponent extends LitElement {
 
   render() {
     return html` <div id="queens">
-      <h1 class="queens-title">Category is: Runway Staravaganza</h1>
+      <h1 class="queens-title">Category is: Runway Stravaganza</h1>
       <div class="queens-wrapper">
         ${this.queens &&
         this.queens.data.map(
