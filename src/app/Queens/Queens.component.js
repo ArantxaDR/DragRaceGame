@@ -21,8 +21,8 @@ export class QueensComponent extends LitElement {
       .queens-title {
         font-family: "Kotta One", serif;
         text-align: center;
-        color: #4db1f3;
-        text-shadow: 5px 5px 0px #71f8e6;
+        color: var(--queen-title-color, #4db1f3);
+        text-shadow: 5px 5px 0px var(--queen-title-shadow, #71f8e6);
       }
       .queens-wrapper {
         display: grid;
@@ -36,17 +36,17 @@ export class QueensComponent extends LitElement {
         width: 17rem;
         height: 25rem;
         margin: 0 auto;
-        background-color: #98caeb;
+        background-color: var(--card-back-color, #98caeb);
         flex-direction: column;
         align-content: center;
         justify-content: center;
         align-items: center;
-        box-shadow: inset 0 0 5px 8px #408591;
-        border: 11px double #5ca18c;
+        box-shadow: inset 0 0 5px 8px var(--card-back-shadow, #408591);
+        border: 11px double var(--card-back-border, #5ca18c);
         border-radius: 0 44px;
       }
       .card:hover {
-        box-shadow: 10px 10px 93px 0px #38bdd4;
+        box-shadow: 10px 10px 93px 0px var(--card-hover, #38bdd4);
       }
       .card-title {
         color: greenyellow;
@@ -61,9 +61,9 @@ export class QueensComponent extends LitElement {
       .card-img {
         width: 8rem;
         height: 8rem;
-        border: #27b9ad ridge 4px;
+        border: var(--card-img-border, #27b9ad) ridge 4px;
         border-radius: 60% 40% 45% 55% / 54% 34% 66% 46%;
-        box-shadow: 2px 0px 5px #145751;
+        box-shadow: 2px 0px 5px var(--card-img-shadow, #145751);
       }
       .card-text {
         color: snow;

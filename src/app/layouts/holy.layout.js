@@ -1,5 +1,4 @@
 import { css, html, LitElement } from "lit";
-import "./../../assets/icons/pride-icon.png";
 
 export class HolyLayout extends LitElement {
   constructor() {
@@ -20,16 +19,20 @@ export class HolyLayout extends LitElement {
 
       #holy-header {
         grid-area: my-header;
-        background-color: var(--holy-nav-background-color, #e24d5c);
+        background-color: var(--holy-header-background-color, #e24d5c);
         text-align: center;
         padding-top: 0.5rem;
-        color: #fff2dd;
+        color: var(--holy-header-color, #fae7c8);
         font-family: "Niconne", cursive;
         font-size: 2rem;
         font-weight: 700;
-        text-shadow: 5px 5px 0px #eb452b, 10px 10px 0px #efa032,
-          15px 15px 0px #46b59b, 20px 20px 0px #017e7f, 25px 25px 0px #052939,
-          30px 30px 0px #c11a2b, 35px 35px 0px #c11a2b;
+        text-shadow: 5px 5px 0px var(--holy-header-first-shadow, #eb452b),
+          10px 10px 0px var(--holy-header-second-shadow, #efa032),
+          15px 15px 0px var(--holy-header-third-shadow, #46b59b),
+          20px 20px 0px var(--holy-header-fourth-shadow, #017e7f),
+          25px 25px 0px var(--holy-header-fifth-shadow, #052939),
+          30px 30px 0px var(--holy-header-sixth-shadow, #c11a2b),
+          35px 35px 0px var(--holy-header-seventh-shadow, #c11a2b);
       }
 
       #holy-nav {
