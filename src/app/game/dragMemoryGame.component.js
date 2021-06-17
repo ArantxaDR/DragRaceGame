@@ -13,7 +13,8 @@ export class DragMemoryComponent extends LitElement {
   static get properties() {
     return {
       queens: { type: Object },
-      cards: { Array },
+      queensGame: { type: Object },
+      //cards: { Array },
       totalTime: { type: Number }
     };
   }
@@ -179,6 +180,9 @@ export class DragMemoryComponent extends LitElement {
         position: absolute;
         width: 100px;
         height: 100px;
+        width: 124px;
+        height: 175px;
+        border-radius: 12px;
       }
 
       @media (min-width: 600px) and (max-width: 1000px) {
@@ -199,17 +203,23 @@ export class DragMemoryComponent extends LitElement {
   async connectedCallback() {
     super.connectedCallback();
     this.queens = await this.service.getQueens();
+    this.queensGame = this.queens.data.filter(
+      (queen) =>
+        queen.id === 24 || queen.id === 2 || queen.id === 14 || queen.id === 9
+    );
+    this.queensGame = [...this.queensGame, ...this.queensGame];
+    this.shuffleQueens(this.queensGame);
   }
 
-  // clickFlicker (e) {
-  //   e.target.classList.toggle('flicker');
-  //   const {id} = e.target;
-  //   const targetButtton = e.target.parentElement.children[id];
+  shuffleQueens(queensGame) {
+    for (let i = queensGame.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = queensGame[i];
+      queensGame[i] = queensGame[j];
+      queensGame[j] = temp;
+    }
+  }
 
-  // setTimeout(() => {
-  //   targetButtton.classList.toggle('flicker');
-  // }, 7000)
-  // }
   removeClass(e) {
     if (e !== undefined) {
       e.currentTarget.classList.remove("visible");
@@ -226,7 +236,6 @@ export class DragMemoryComponent extends LitElement {
 
       cards.forEach((card) => {
         card.addEventListener("click", () => {
-          //game.flipCard(card);
           this.flipCard(card);
         });
       });
@@ -236,8 +245,7 @@ export class DragMemoryComponent extends LitElement {
   flipCard(card) {
     card.classList.add("visible");
   }
-  //this.countdownElement = this.shadowRoot.querySelector('#countdown');
-  //this.rocketElement.setAttribute('class', 'rocket-wrapper');
+
   render() {
     return html`<h1 class="game-title">Are you a winner?</h1>
       <button
@@ -264,92 +272,27 @@ export class DragMemoryComponent extends LitElement {
       </div>
 
       <div class="game-grid">
-        <div class="game-card ">
-          <div class="card-back card-face">
-            <img
-              class="back-img"
-              src="./../../assets/images/popartru.jpg"
-              alt="RuPaul pop art image"
-            />
-          </div>
-          <div class="card-front card-face">
-            <img
-              class="front-img value"
-              src="./../../assets/images/pride-flag.jpg"
-              alt="Pride flag"
-            />
-          </div>
-        </div>
-        <div class="game-card">
-          <div class="card-back card-face">
-            <img
-              class="back-img"
-              src="./../../assets/images/popartru.jpg"
-              alt="RuPaul pop art iamge"
-            />
-          </div>
-          <div class="card-front card-face"></div>
-        </div>
-        <div class="game-card">
-          <div class="card-back card-face">
-            <img
-              class="back-img"
-              src="./../../assets/images/popartru.jpg"
-              alt="RuPaul pop art iamge"
-            />
-          </div>
-          <div class="card-front card-face"></div>
-        </div>
-        <div class="game-card">
-          <div class="card-back card-face">
-            <img
-              class="back-img"
-              src="./../../assets/images/popartru.jpg"
-              alt="RuPaul pop art iamge"
-            />
-          </div>
-          <div class="card-front card-face"></div>
-        </div>
-        <div class="game-card">
-          <div class="card-back card-face">
-            <img
-              class="back-img"
-              src="./../../assets/images/popartru.jpg"
-              alt="RuPaul pop art iamge"
-            />
-          </div>
-          <div class="card-front card-face"></div>
-        </div>
-        <div class="game-card">
-          <div class="card-back card-face">
-            <img
-              class="back-img"
-              src="./../../assets/images/popartru.jpg"
-              alt="RuPaul pop art iamge"
-            />
-          </div>
-          <div class="card-front card-face"></div>
-        </div>
-        <div class="game-card">
-          <div class="card-back card-face">
-            <img
-              class="back-img"
-              src="./../../assets/images/popartru.jpg"
-              alt="RuPaul pop art iamge"
-            />
-          </div>
-          <div class="card-front card-face"></div>
-        </div>
-        <div class="game-card">
-          <div class="card-back card-face">
-            <img
-              class="back-img"
-              src="./../../assets/images/popartru.jpg"
-              alt="RuPaul pop art iamge"
-            />
-          </div>
-          <div class="card-front card-face"></div>
-        </div>
+        ${this.queensGame &&
+        this.queensGame.map(
+          (queenGame) => html`
+            <div class="game-card ">
+              <div class="card-back card-face">
+                <img
+                  class="back-img"
+                  src="./../../assets/images/popartru.jpg"
+                  alt="RuPaul pop art image"
+                />
+              </div>
+              <div class="card-front card-face">
+                <img
+                  class="front-img value"
+                  src=${queenGame.image_url}
+                  alt="Pride flag"
+                />
+              </div>
+            </div>
+          `
+        )}
       </div>`;
   }
 }
