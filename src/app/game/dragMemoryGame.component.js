@@ -7,15 +7,17 @@ export class DragMemoryComponent extends LitElement {
   constructor() {
     super();
     this.service = new QueensService();
-    this.removeClass();
+    this.selectedCard1 = null;
+    this.selectedCard2 = null;
   }
 
   static get properties() {
     return {
       queens: { type: Object },
       queensGame: { type: Object },
-      //cards: { Array },
-      totalTime: { type: Number }
+      totalTime: { type: Number },
+      selectedCard1: { type: Object },
+      selectedCard2: { type: Object }
     };
   }
 
@@ -206,6 +208,7 @@ export class DragMemoryComponent extends LitElement {
     this.queensGame = this.queens.data.filter(
       (queen) =>
         queen.id === 24 || queen.id === 2 || queen.id === 14 || queen.id === 9
+      //queen.id === 24 || queen.id === 24 || queen.id === 24 || queen.id === 24
     );
     this.queensGame = [...this.queensGame, ...this.queensGame];
     this.shuffleQueens(this.queensGame);
@@ -221,29 +224,46 @@ export class DragMemoryComponent extends LitElement {
   }
 
   removeClass(e) {
-    if (e !== undefined) {
-      e.currentTarget.classList.remove("visible");
+    e.currentTarget.classList.remove("visible");
 
-      let overlays = this.shadowRoot.querySelectorAll(".overlay-text");
-      let cards = this.shadowRoot.querySelectorAll(".game-card");
+    let overlays = this.shadowRoot.querySelectorAll(".overlay-text");
+    let cards = this.shadowRoot.querySelectorAll(".game-card");
 
-      overlays.forEach((overlay) => {
-        overlay.addEventListener("click", () => {
-          overlay.classList.remove("visible");
-          //game.startGame();
-        });
+    overlays.forEach((overlay) => {
+      overlay.addEventListener("click", () => {
+        overlay.classList.remove("visible");
+        //game.startGame();
       });
+    });
 
-      cards.forEach((card) => {
-        card.addEventListener("click", () => {
-          this.flipCard(card);
-        });
+    cards.forEach((card) => {
+      card.addEventListener("click", () => {
+        this.flipCard(card);
       });
-    }
+    });
   }
 
   flipCard(card) {
     card.classList.add("visible");
+    this.selectedCard1 === null
+      ? (this.selectedCard1 = card)
+      : (this.selectedCard2 = card);
+    this.matchCards();
+  }
+
+  matchCards() {
+    if (this.selectedCard1 !== null && this.selectedCard2 !== null) {
+      if (this.selectedCard1.innerHTML != this.selectedCard2.innerHTML) {
+        let card1 = this.selectedCard1;
+        let card2 = this.selectedCard2;
+        setTimeout(() => {
+          card1.classList.remove("visible");
+          card2.classList.remove("visible");
+        }, 1000);
+      }
+      this.selectedCard1 = null;
+      this.selectedCard2 = null;
+    }
   }
 
   render() {
