@@ -6,12 +6,16 @@ import "./../../assets/images/pride-flag.jpg";
 export class DragMemoryComponent extends LitElement {
   constructor() {
     super();
-    this.flips;
-    this.timer;
     this.service = new QueensService();
+    this.removeClass();
   }
+
   static get properties() {
-    return { flips: { type: Number }, queens: { type: Object } };
+    return {
+      queens: { type: Object },
+      cards: { Array },
+      totalTime: { type: Number }
+    };
   }
 
   static get styles() {
@@ -62,6 +66,10 @@ export class DragMemoryComponent extends LitElement {
       }
       .overlay-text {
         display: none;
+        width: 100%;
+        height: 100vh;
+        background-color: transparent;
+        border: none;
         position: fixed;
         top: 0;
         left: 0;
@@ -193,124 +201,183 @@ export class DragMemoryComponent extends LitElement {
     this.queens = await this.service.getQueens();
   }
 
+  // clickFlicker (e) {
+  //   e.target.classList.toggle('flicker');
+  //   const {id} = e.target;
+  //   const targetButtton = e.target.parentElement.children[id];
+
+  // setTimeout(() => {
+  //   targetButtton.classList.toggle('flicker');
+  // }, 7000)
+  // }
+  removeClass(e) {
+    if (e !== undefined) {
+      console.log(e.currentTarget);
+      e.currentTarget.classList.remove("visible");
+
+      let overlays = Array.from(
+        document.getElementsByClassName("overlay-text")
+      );
+
+      let cards = this.shadowRoot.querySelectorAll(".game-card");
+
+      //let cards = Array.from(document.getElementsByClassName("game-card"));
+
+      overlays.forEach((overlay) => {
+        overlay.addEventListener("click", () => {
+          overlay.classList.remove("visible");
+          //game.startGame();
+        });
+      });
+
+      cards.forEach((card) => {
+        card.addEventListener("click", () => {
+          //game.flipCard(card);
+          console.log("shantay you stay");
+        });
+      });
+    }
+
+    //console.log(this.shadowRoot.querySelectorAll(".overlay-text"))
+    //  e.target.classList.remove('visible');
+    // console.log("funsiona");
+
+    // let overlays = Array.from(document.getElementsByClassName("overlay-text"));
+    // let cards = Array.from(document.getElementsByClassName("game-card"));
+
+    // overlays.forEach((overlay) => {
+    //   overlay.addEventListener("click", () => {
+    //     overlay.classList.remove("visible");
+    //     //game.startGame();
+    //   });
+    // });
+
+    // cards.forEach((card) => {
+    //   card.addEventListener("click", () => {
+    //     //game.flipCard(card);
+    //   });
+    // });
+  }
+  //this.countdownElement = this.shadowRoot.querySelector('#countdown');
+  //this.rocketElement.setAttribute('class', 'rocket-wrapper');
   render() {
     return html`<h1 class="game-title">Are you a winner?</h1>
-      <div class="overlay-text visible">Click to start</div>
-      <div id="game-over" class="overlay-text ">
+      <button
+        id="boton"
+        class="overlay-text visible"
+        @click="${(e) => {
+          this.removeClass(e);
+        }}"
+      >
+        Click to start
+      </button>
+      <button id="game-over" class="overlay-text ">
         Shasay away<span class="overlay-text-small">Click to restart</span>
-      </div>
-      <div id="victory" class="overlay-text">
+      </button>
+      <button id="victory" class="overlay-text">
         Shantay, you stay<span class="overlay-text-small"
           >Click to restart</span
         >
-      </div>
+      </button>
 
       <div class="game-info">
-        <h3 class="game-flips">Flips: <span>${this.flips}</span></h3>
-        <h3 class="game-timer">Time <span>${this.timer}</span></h3>
+        <h3 class="game-flips">Flips: <span></span></h3>
+        <h3 class="game-timer">Time <span>${this.totalTime}</span></h3>
       </div>
-      <div class="game-grid">
-        <div class="game-grid">
-          <div class="game-card visible ">
-            <div class="card-back card-face">
-              <img
-                class="back-img"
-                src="./../../assets/images/popartru.jpg"
-                alt="RuPaul pop art image"
-              />
-            </div>
-            <div class="card-front card-face">
-              <img
-                class="front-img value"
-                src="./../../assets/images/pride-flag.jpg"
-                alt="Pride flag"
-              />
-            </div>
-          </div>
-          <div class="game-card">
-            <div class="card-back card-face">
-              <img
-                class="back-img"
-                src="./../../assets/images/popartru.jpg"
-                alt="RuPaul pop art iamge"
-              />
-            </div>
-            <div class="card-front card-face"></div>
-          </div>
-          <div class="game-card">
-            <div class="card-back card-face">
-              <img
-                class="back-img"
-                src="./../../assets/images/popartru.jpg"
-                alt="RuPaul pop art iamge"
-              />
-            </div>
-            <div class="card-front card-face"></div>
-          </div>
-          <div class="game-card">
-            <div class="card-back card-face">
-              <img
-                class="back-img"
-                src="./../../assets/images/popartru.jpg"
-                alt="RuPaul pop art iamge"
-              />
-            </div>
-            <div class="card-front card-face"></div>
-          </div>
-          <div class="game-card">
-            <div class="card-back card-face">
-              <img
-                class="back-img"
-                src="./../../assets/images/popartru.jpg"
-                alt="RuPaul pop art iamge"
-              />
-            </div>
-            <div class="card-front card-face"></div>
-          </div>
-          <div class="game-card">
-            <div class="card-back card-face">
-              <img
-                class="back-img"
-                src="./../../assets/images/popartru.jpg"
-                alt="RuPaul pop art iamge"
-              />
-            </div>
-            <div class="card-front card-face"></div>
-          </div>
-          <div class="game-card">
-            <div class="card-back card-face">
-              <img
-                class="back-img"
-                src="./../../assets/images/popartru.jpg"
-                alt="RuPaul pop art iamge"
-              />
-            </div>
-            <div class="card-front card-face"></div>
-          </div>
-          <div class="game-card">
-            <div class="card-back card-face">
-              <img
-                class="back-img"
-                src="./../../assets/images/popartru.jpg"
-                alt="RuPaul pop art iamge"
-              />
-            </div>
-            <div class="card-front card-face"></div>
-          </div>
 
-          <!-- 
-      <button @click="${(e) => this.clickMe(e)}>">WIN</button> -->
+      <div class="game-grid">
+        <div
+          class="game-card visible "
+          @click="${(e) => {
+            this.removeClass(e);
+          }}"
+        >
+          <div class="card-back card-face">
+            <img
+              class="back-img"
+              src="./../../assets/images/popartru.jpg"
+              alt="RuPaul pop art image"
+            />
+          </div>
+          <div class="card-front card-face">
+            <img
+              class="front-img value"
+              src="./../../assets/images/pride-flag.jpg"
+              alt="Pride flag"
+            />
+          </div>
+        </div>
+        <div class="game-card">
+          <div class="card-back card-face">
+            <img
+              class="back-img"
+              src="./../../assets/images/popartru.jpg"
+              alt="RuPaul pop art iamge"
+            />
+          </div>
+          <div class="card-front card-face"></div>
+        </div>
+        <div class="game-card">
+          <div class="card-back card-face">
+            <img
+              class="back-img"
+              src="./../../assets/images/popartru.jpg"
+              alt="RuPaul pop art iamge"
+            />
+          </div>
+          <div class="card-front card-face"></div>
+        </div>
+        <div class="game-card">
+          <div class="card-back card-face">
+            <img
+              class="back-img"
+              src="./../../assets/images/popartru.jpg"
+              alt="RuPaul pop art iamge"
+            />
+          </div>
+          <div class="card-front card-face"></div>
+        </div>
+        <div class="game-card">
+          <div class="card-back card-face">
+            <img
+              class="back-img"
+              src="./../../assets/images/popartru.jpg"
+              alt="RuPaul pop art iamge"
+            />
+          </div>
+          <div class="card-front card-face"></div>
+        </div>
+        <div class="game-card">
+          <div class="card-back card-face">
+            <img
+              class="back-img"
+              src="./../../assets/images/popartru.jpg"
+              alt="RuPaul pop art iamge"
+            />
+          </div>
+          <div class="card-front card-face"></div>
+        </div>
+        <div class="game-card">
+          <div class="card-back card-face">
+            <img
+              class="back-img"
+              src="./../../assets/images/popartru.jpg"
+              alt="RuPaul pop art iamge"
+            />
+          </div>
+          <div class="card-front card-face"></div>
+        </div>
+        <div class="game-card">
+          <div class="card-back card-face">
+            <img
+              class="back-img"
+              src="./../../assets/images/popartru.jpg"
+              alt="RuPaul pop art iamge"
+            />
+          </div>
+          <div class="card-front card-face"></div>
         </div>
       </div>`;
   }
-  // clickMe(e) {
-  //   console.log(e);
-  //   const message = new CustomEvent("queens:message", {
-  //     bubbles: true,
-  //     detail: {
-  //       msg: "BAAAM"
-  //     }
-  // });
-  // this.dispatchEvent(message);
 }
 customElements.define("drag-memory", DragMemoryComponent);
