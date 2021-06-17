@@ -212,16 +212,10 @@ export class DragMemoryComponent extends LitElement {
   // }
   removeClass(e) {
     if (e !== undefined) {
-      console.log(e.currentTarget);
       e.currentTarget.classList.remove("visible");
 
-      let overlays = Array.from(
-        document.getElementsByClassName("overlay-text")
-      );
-
+      let overlays = this.shadowRoot.querySelectorAll(".overlay-text");
       let cards = this.shadowRoot.querySelectorAll(".game-card");
-
-      //let cards = Array.from(document.getElementsByClassName("game-card"));
 
       overlays.forEach((overlay) => {
         overlay.addEventListener("click", () => {
@@ -233,30 +227,14 @@ export class DragMemoryComponent extends LitElement {
       cards.forEach((card) => {
         card.addEventListener("click", () => {
           //game.flipCard(card);
-          console.log("shantay you stay");
+          this.flipCard(card);
         });
       });
     }
+  }
 
-    //console.log(this.shadowRoot.querySelectorAll(".overlay-text"))
-    //  e.target.classList.remove('visible');
-    // console.log("funsiona");
-
-    // let overlays = Array.from(document.getElementsByClassName("overlay-text"));
-    // let cards = Array.from(document.getElementsByClassName("game-card"));
-
-    // overlays.forEach((overlay) => {
-    //   overlay.addEventListener("click", () => {
-    //     overlay.classList.remove("visible");
-    //     //game.startGame();
-    //   });
-    // });
-
-    // cards.forEach((card) => {
-    //   card.addEventListener("click", () => {
-    //     //game.flipCard(card);
-    //   });
-    // });
+  flipCard(card) {
+    card.classList.add("visible");
   }
   //this.countdownElement = this.shadowRoot.querySelector('#countdown');
   //this.rocketElement.setAttribute('class', 'rocket-wrapper');
@@ -286,12 +264,7 @@ export class DragMemoryComponent extends LitElement {
       </div>
 
       <div class="game-grid">
-        <div
-          class="game-card visible "
-          @click="${(e) => {
-            this.removeClass(e);
-          }}"
-        >
+        <div class="game-card ">
           <div class="card-back card-face">
             <img
               class="back-img"
