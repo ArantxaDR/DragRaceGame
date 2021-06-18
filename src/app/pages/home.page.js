@@ -1,43 +1,66 @@
 import { css, html, LitElement } from "lit";
-import "./../../assets/images/rupaul.png";
+import "./../../assets/images/rupaul.jpg";
 
 export class HomePage extends LitElement {
   static get styles() {
     return css`
-      .main-content {
+      .main {
         font-family: "Kotta One", serif;
-        line-height: 150%;
       }
-      .main-content_title {
+      .main-title {
         text-align: center;
         font-family: "Niconne";
         color: darkred;
         font-size: xx-large;
       }
-      .main-content_title2 {
+      .main-title2 {
         text-align: center;
         color: #2b1010;
       }
+      .main-content {
+        display: flex;
+        flex-direction: column;
+        margin: 1em;
+      }
       .main-content_text {
+        width: 100%;
         text-align: left;
-        padding: 0.9rem;
+        line-height: 200%;
         color: #2b1010;
       }
       .main-content_image {
-        width: 10rem;
+        width: 20rem;
         height: 13rem;
+        border-radius: 50%;
         position: relative;
-        margin-bottom: -4px;
-        margin-left: 39px;
+      }
+      .main-button {
+        height: 3rem;
+        width: 10rem;
+        position: relative;
+        left: 25%;
+        top: -10px;
+        border-radius: 30%;
+        background-color: var(--btn-color, #36f279);
+        border-style: none;
+        box-shadow: 5px 3px 7px var(--btn-shadow-color, #80af90);
       }
       @media (min-width: 600px) and (max-width: 1000px) {
         .main-content_image {
-          margin-left: 150px;
+          left: 300px;
+        }
+        .main-button {
+          top: -100px;
+          left: 5%;
         }
       }
       @media (min-width: 1001px) {
         .main-content_image {
-          margin-left: 350px;
+          left: 200px;
+        }
+        .main-button {
+          left: 60%;
+          top: -100px;
         }
       }
     `;
@@ -48,9 +71,11 @@ export class HomePage extends LitElement {
 
   render() {
     return html`
+      <div class="main">
+        <h2 class="main-title">Welcome to RuPaul's DragRace</h2>
+        <h4 class="main-title2">Reading is Fun-da-men-tal!!</h4>
+      </div>
       <div class="main-content">
-        <h2 class="main-content_title">Welcome to RuPaul's DragRace</h2>
-        <h4 class="main-content_title2">Reading is Fun-da-men-tal!!</h4>
         <p class="main-content_text">
           This is an American reality competition television series, the first
           in the Drag Race franchise. The show documents RuPaul in the search
@@ -61,12 +86,13 @@ export class HomePage extends LitElement {
           The title of the show is a play on drag queen and drag racing, and the
           title sequence and song "Drag Race" both have a drag-racing theme.
         </p>
+        <img
+          class="main-content_image"
+          src="./../../assets/images/rupaul.jpg"
+          alt="RuPaul in full drag"
+        />
       </div>
-      <img
-        class="main-content_image"
-        src="./../../assets/images/rupaul.png"
-        alt="RuPaul in full drag"
-      />
+      <button class="main-button">What's the T?</button>
     `;
   }
 }
