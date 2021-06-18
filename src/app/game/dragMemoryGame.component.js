@@ -149,18 +149,6 @@ export class DragMemoryComponent extends LitElement {
             0 0 200px var(--shadow-color, #8b838d);
         }
       }
-      @keyframes dance {
-        0%,
-        100% {
-          transform: rotate(0);
-        }
-        25% {
-          transform: rotate(-30deg);
-        }
-        75% {
-          transform: rotate(30deg);
-        }
-      }
       .card-front {
         transform: rotateY(180deg);
         background-color: aliceblue;
