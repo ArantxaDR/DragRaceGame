@@ -208,10 +208,20 @@ export class DragMemoryComponent extends LitElement {
   }
 
   startGame() {
+    let randomQueensIds = [];
+    for (let i = 0; i < 4; i++) {
+      let queenId = Math.floor(
+        Math.random() * (this.queens.data.length + 1 - 1) + 1
+      );
+      randomQueensIds.push(queenId);
+    }
+
     this.queensGame = this.queens.data.filter(
       (queen) =>
-        queen.id === 24 || queen.id === 2 || queen.id === 14 || queen.id === 9
-      //queen.id === 24 || queen.id === 24 || queen.id === 24 || queen.id === 24
+        queen.id === randomQueensIds[0] ||
+        queen.id === randomQueensIds[1] ||
+        queen.id === randomQueensIds[2] ||
+        queen.id === randomQueensIds[3]
     );
     this.queensGame = [...this.queensGame, ...this.queensGame];
     this.shuffleQueens(this.queensGame);
@@ -235,7 +245,6 @@ export class DragMemoryComponent extends LitElement {
     overlays.forEach((overlay) => {
       overlay.addEventListener("click", () => {
         overlay.classList.remove("visible");
-        //game.startGame();
       });
     });
 
@@ -273,7 +282,6 @@ export class DragMemoryComponent extends LitElement {
       this.selectedCard1 = null;
       this.selectedCard2 = null;
     }
-    console.log(this.couplesMatched);
   }
 
   resetGame(e) {
@@ -331,7 +339,7 @@ export class DragMemoryComponent extends LitElement {
                 <img
                   class="front-img value"
                   src=${queenGame.image_url}
-                  alt="Pride flag"
+                  alt=${queenGame.name}
                 />
               </div>
             </div>
