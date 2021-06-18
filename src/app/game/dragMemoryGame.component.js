@@ -1,7 +1,6 @@
 import { css, html, LitElement } from "lit";
 import { QueensService } from "./../Queens/queens.service";
 import "./../../assets/images/popartru.jpg";
-import "./../../assets/images/pride-flag.jpg";
 
 export class DragMemoryComponent extends LitElement {
   constructor() {
@@ -9,6 +8,7 @@ export class DragMemoryComponent extends LitElement {
     this.service = new QueensService();
     this.selectedCard1 = null;
     this.selectedCard2 = null;
+    this.couplesMatched = 0;
   }
 
   static get properties() {
@@ -17,7 +17,8 @@ export class DragMemoryComponent extends LitElement {
       queensGame: { type: Object },
       totalTime: { type: Number },
       selectedCard1: { type: Object },
-      selectedCard2: { type: Object }
+      selectedCard2: { type: Object },
+      couplesMatched: { type: Number }
     };
   }
 
@@ -64,9 +65,7 @@ export class DragMemoryComponent extends LitElement {
       .game-card.visible .card-front {
         transform: rotateY(0);
       }
-      .game-card.matched .value {
-        animation: dance 1s linear infinite 500ms;
-      }
+
       .overlay-text {
         display: none;
         width: 100%;
@@ -205,6 +204,10 @@ export class DragMemoryComponent extends LitElement {
   async connectedCallback() {
     super.connectedCallback();
     this.queens = await this.service.getQueens();
+    this.startGame();
+  }
+
+  startGame() {
     this.queensGame = this.queens.data.filter(
       (queen) =>
         queen.id === 24 || queen.id === 2 || queen.id === 14 || queen.id === 9
@@ -237,6 +240,7 @@ export class DragMemoryComponent extends LitElement {
     });
 
     cards.forEach((card) => {
+      card.classList.remove("visible");
       card.addEventListener("click", () => {
         this.flipCard(card);
       });
@@ -260,10 +264,24 @@ export class DragMemoryComponent extends LitElement {
           card1.classList.remove("visible");
           card2.classList.remove("visible");
         }, 1000);
+      } else {
+        this.couplesMatched++;
+        if (this.couplesMatched === 4) {
+          this.shadowRoot.querySelector("#victory").classList.add("visible");
+        }
       }
       this.selectedCard1 = null;
       this.selectedCard2 = null;
     }
+    console.log(this.couplesMatched);
+  }
+
+  resetGame(e) {
+    this.selectedCard1 = null;
+    this.selectedCard2 = null;
+    this.couplesMatched = 0;
+    this.startGame();
+    this.removeClass(e);
   }
 
   render() {
@@ -280,7 +298,13 @@ export class DragMemoryComponent extends LitElement {
       <button id="game-over" class="overlay-text ">
         Shasay away<span class="overlay-text-small">Click to restart</span>
       </button>
-      <button id="victory" class="overlay-text">
+      <button
+        id="victory"
+        class="overlay-text"
+        @click="${(e) => {
+          this.resetGame(e);
+        }}"
+      >
         Shantay, you stay<span class="overlay-text-small"
           >Click to restart</span
         >
