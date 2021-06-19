@@ -27,7 +27,8 @@
   },
   "jest": {
     "transform": {
-      "^.+\\.[t|j]sx?$": "babel-jest"
+      "^.+\\.[t|j]sx?$": "babel-jest",
+      "\\.js$": "<rootDir>/node_modules/babel-jest"
     },
     "transformIgnorePatterns": [
       "node_module/(?!(lit-element|lit-html|lit|@lit/ractive-element)/)"
@@ -63,8 +64,10 @@
   },
   "dependencies": {
     "@vaadin/router": "^1.7.4",
+    "animated-text-arantxadr": "^0.0.1",
     "axios": "^0.21.1",
     "file-loader": "^6.2.0",
-    "lit": "^2.0.0-rc.2"
+    "lit": "^2.0.0-rc.2",
+    "random-drag-hashtags": "^0.1.2"
   }
 }

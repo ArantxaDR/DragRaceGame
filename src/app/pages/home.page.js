@@ -1,4 +1,6 @@
 import { css, html, LitElement } from "lit";
+import "random-drag-hashtags/random-drag-hashtags";
+
 import "./../../assets/images/rupaul.jpg";
 
 export class HomePage extends LitElement {
@@ -49,18 +51,10 @@ export class HomePage extends LitElement {
         .main-content_image {
           left: 300px;
         }
-        .main-button {
-          top: -100px;
-          left: 5%;
-        }
       }
       @media (min-width: 1001px) {
         .main-content_image {
           left: 200px;
-        }
-        .main-button {
-          left: 60%;
-          top: -100px;
         }
       }
     `;
@@ -92,7 +86,8 @@ export class HomePage extends LitElement {
           alt="RuPaul in full drag"
         />
       </div>
-      <button class="main-button">What's the T?</button>
+
+      <random-drag-hashtags></random-drag-hashtags>
     `;
   }
 }

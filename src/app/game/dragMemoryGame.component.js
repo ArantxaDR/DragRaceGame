@@ -199,7 +199,7 @@ export class DragMemoryComponent extends LitElement {
     let randomQueensIds = [];
     for (let i = 0; i < 4; i++) {
       let queenId = Math.floor(
-        Math.random() * (this.queens.data.length + 1 - 1) + 1
+        Math.random() * (this.queens.data.length + 1 - 1)
       );
       randomQueensIds.push(queenId);
     }
