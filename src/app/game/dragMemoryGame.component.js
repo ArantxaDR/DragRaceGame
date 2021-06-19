@@ -10,6 +10,7 @@ export class DragMemoryComponent extends LitElement {
     this.selectedCard2 = null;
     this.couplesMatched = 0;
     this.firstLoad = true;
+    this.queensNumber = 6;
   }
 
   static get properties() {
@@ -17,6 +18,7 @@ export class DragMemoryComponent extends LitElement {
       firstLoad: { type: Boolean },
       queens: { type: Object },
       queensGame: { type: Object },
+      queensNumber: { type: Number },
       totalTime: { type: Number },
       selectedCard1: { type: Object },
       selectedCard2: { type: Object },
@@ -28,6 +30,13 @@ export class DragMemoryComponent extends LitElement {
     return css`
       .game-title {
         text-align: center;
+        font-family: "Kotta one";
+        font-family: "Kotta One", serif;
+        text-align: center;
+        color: var(--queen-title-color, #da3333);
+        text-shadow: 4px 5px 0px var(--queen-title-shadow, #f1caca);
+        margin: 0;
+        padding: 0;
       }
       .game-info {
         display: flex;
@@ -36,14 +45,15 @@ export class DragMemoryComponent extends LitElement {
         align-content: center;
         justify-content: space-evenly;
         align-items: center;
+        padding: 0;
       }
       .game-grid {
         display: grid;
         grid-template-rows: repeat(1, 1fr);
-        grid-template-columns: repeat(2, auto);
+        grid-template-columns: repeat(auto, auto);
         grid-gap: 1rem;
         justify-content: center;
-        margin: 0.7rem;
+        padding-bottom: 0.5em;
         perspective: 500px;
       }
       .game-card {
@@ -185,7 +195,7 @@ export class DragMemoryComponent extends LitElement {
       @media (min-width: 1001px) {
         .game-grid {
           grid-template-rows: repeat(1, 1fr);
-          grid-template-columns: repeat(4, auto);
+          grid-template-columns: repeat(6, auto);
         }
       }
     `;
@@ -198,20 +208,30 @@ export class DragMemoryComponent extends LitElement {
   }
 
   startGame() {
-    let randomQueensPositiom = [];
-    for (let i = 0; i < 4; i++) {
-      let queenId = Math.floor(
+    let randomQueensPosition = [];
+    let counterQueens = 0;
+    this.queensGame = [];
+
+    while (counterQueens < this.queensNumber) {
+      let queenPosition = Math.floor(
         Math.random() * (this.queens.data.length + 1 - 1)
       );
-      randomQueensPositiom.push(queenId);
+      if (counterQueens === 0) {
+        randomQueensPosition.push(queenPosition);
+        counterQueens++;
+      } else {
+        let checkedQueen = randomQueensPosition.filter(
+          (randomQueenPosition) => randomQueenPosition === queenPosition
+        );
+        if (checkedQueen.length === 0) {
+          randomQueensPosition.push(queenPosition);
+          counterQueens++;
+        }
+      }
     }
-
-    this.queensGame = [
-      this.queens.data[randomQueensPositiom[0]],
-      this.queens.data[randomQueensPositiom[1]],
-      this.queens.data[randomQueensPositiom[2]],
-      this.queens.data[randomQueensPositiom[3]]
-    ];
+    randomQueensPosition.map((randomQueenPosition) => {
+      this.queensGame.push(this.queens.data[randomQueenPosition]);
+    });
 
     this.queensGame = [...this.queensGame, ...this.queensGame];
     this.shuffleQueens(this.queensGame);
@@ -268,7 +288,7 @@ export class DragMemoryComponent extends LitElement {
         }, 1000);
       } else {
         this.couplesMatched++;
-        if (this.couplesMatched === 4) {
+        if (this.couplesMatched === this.queensGame.length / 2) {
           this.shadowRoot.querySelector("#victory").classList.add("visible");
         }
       }

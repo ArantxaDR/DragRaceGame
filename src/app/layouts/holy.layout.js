@@ -13,7 +13,7 @@ export class HolyLayout extends LitElement {
         min-height: 100vh;
         display: grid;
         grid-template-columns: 100%;
-        grid-template-rows: 100px 35px 1fr 50px;
+        grid-template-rows: 50px 35px 1fr 50px;
         grid-template-areas: "my-header my-header my-header" "my-nav my-nav my-nav" "my-main my-main my-main" "my-footer my-footer my-footer";
       }
 
@@ -21,10 +21,9 @@ export class HolyLayout extends LitElement {
         grid-area: my-header;
         background-color: var(--holy-header-background-color, #e24d5c);
         text-align: center;
-        padding-top: 0.5rem;
         color: var(--holy-header-color, #fae7c8);
         font-family: "Niconne", cursive;
-        font-size: 2rem;
+        font-size: 1.7rem;
         font-weight: 700;
         text-shadow: 5px 5px 0px var(--holy-header-first-shadow, #eb452b),
           10px 10px 0px var(--holy-header-second-shadow, #efa032),
@@ -102,7 +101,7 @@ export class HolyLayout extends LitElement {
 
       @media (min-width: 1001px) {
         #holy {
-          grid-template-columns: 100px 1fr 50px;
+          grid-template-columns: 90px 1fr 50px;
           grid-template-rows: 120px 35px 1fr 35px;
           grid-template-areas: "my-header my-header my-header" "my-nav my-nav my-nav" "my-main my-main my-main" " my-footer  my-footer my-footer";
         }
