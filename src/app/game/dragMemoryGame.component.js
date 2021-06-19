@@ -9,10 +9,12 @@ export class DragMemoryComponent extends LitElement {
     this.selectedCard1 = null;
     this.selectedCard2 = null;
     this.couplesMatched = 0;
+    this.firstLoad = true;
   }
 
   static get properties() {
     return {
+      firstLoad: { type: Boolean },
       queens: { type: Object },
       queensGame: { type: Object },
       totalTime: { type: Number },
@@ -196,21 +198,21 @@ export class DragMemoryComponent extends LitElement {
   }
 
   startGame() {
-    let randomQueensIds = [];
+    let randomQueensPositiom = [];
     for (let i = 0; i < 4; i++) {
       let queenId = Math.floor(
         Math.random() * (this.queens.data.length + 1 - 1)
       );
-      randomQueensIds.push(queenId);
+      randomQueensPositiom.push(queenId);
     }
 
-    this.queensGame = this.queens.data.filter(
-      (queen) =>
-        queen.id === randomQueensIds[0] ||
-        queen.id === randomQueensIds[1] ||
-        queen.id === randomQueensIds[2] ||
-        queen.id === randomQueensIds[3]
-    );
+    this.queensGame = [
+      this.queens.data[randomQueensPositiom[0]],
+      this.queens.data[randomQueensPositiom[1]],
+      this.queens.data[randomQueensPositiom[2]],
+      this.queens.data[randomQueensPositiom[3]]
+    ];
+
     this.queensGame = [...this.queensGame, ...this.queensGame];
     this.shuffleQueens(this.queensGame);
   }
@@ -238,10 +240,13 @@ export class DragMemoryComponent extends LitElement {
 
     cards.forEach((card) => {
       card.classList.remove("visible");
-      card.addEventListener("click", () => {
-        this.flipCard(card);
-      });
+      if (this.firstLoad === true) {
+        card.addEventListener("click", () => {
+          this.flipCard(card);
+        });
+      }
     });
+    this.firstLoad = false;
   }
 
   flipCard(card) {

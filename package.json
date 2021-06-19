@@ -31,7 +31,7 @@
       "\\.js$": "<rootDir>/node_modules/babel-jest"
     },
     "transformIgnorePatterns": [
-      "node_module/(?!(lit-element|lit-html|lit|@lit/ractive-element)/)"
+      "node_module/(?!(lit-element|lit-html|lit|@lit/ractive-element)/)"   
     ]
   },
   "browserslist": [
