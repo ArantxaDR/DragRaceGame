@@ -2,6 +2,7 @@ import "./main.css";
 
 import "./app/Queens/Queens.component";
 import "./app/game/dragMemoryGame.component";
+import "./app/home/home.component";
 
 import "./app/pages/home.page";
 import "./app/pages/queens.page";
