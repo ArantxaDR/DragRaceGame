@@ -35,8 +35,7 @@ export class DragMemoryComponent extends LitElement {
         text-align: center;
         color: var(--queen-title-color, #da3333);
         text-shadow: 4px 5px 0px var(--queen-title-shadow, #f1caca);
-        margin: 0;
-        padding: 0;
+        margin-top: 0.5rem;
       }
       .game-info {
         display: flex;
@@ -313,52 +312,45 @@ export class DragMemoryComponent extends LitElement {
         @click="${(e) => {
           this.removeClass(e);
         }}"
-      >
-        Click to start
-      </button>
-      <button id="game-over" class="overlay-text ">
-        Shasay away<span class="overlay-text-small">Click to restart</span>
-      </button>
-      <button
-        id="victory"
-        class="overlay-text"
-        @click="${(e) => {
-          this.resetGame(e);
-        }}"
-      >
-        Shantay, you stay<span class="overlay-text-small"
-          >Click to restart</span
+      ></button>
+        <button
+          id="victory"
+          class="overlay-text"
+          @click="${(e) => {
+            this.resetGame(e);
+          }}"
         >
-      </button>
+          Shantay, you stay<span class="overlay-text-small"
+            >Click to restart</span
+          >
+        </button>
 
-      <div class="game-info">
-        <h3 class="game-flips">Flips: <span></span></h3>
-        <h3 class="game-timer">Time <span>${this.totalTime}</span></h3>
-      </div>
-
-      <div class="game-grid">
-        ${this.queensGame &&
-        this.queensGame.map(
-          (queenGame) => html`
-            <div class="game-card ">
-              <div class="card-back card-face">
-                <img
-                  class="back-img"
-                  src="./../../assets/images/popartru.jpg"
-                  alt="RuPaul pop art image"
-                />
-              </div>
-              <div class="card-front card-face">
-                <img
-                  class="front-img value"
-                  src=${queenGame.image_url}
-                  alt=${queenGame.name}
-                />
-              </div>
-            </div>
-          `
-        )}
-      </div>`;
+        <div class="game-grid">
+          ${
+            this.queensGame &&
+            this.queensGame.map(
+              (queenGame) => html`
+                <div class="game-card ">
+                  <div class="card-back card-face">
+                    <img
+                      class="back-img"
+                      src="./../../assets/images/popartru.jpg"
+                      alt="RuPaul pop art image"
+                    />
+                  </div>
+                  <div class="card-front card-face">
+                    <img
+                      class="front-img value"
+                      src=${queenGame.image_url}
+                      alt=${queenGame.name}
+                    />
+                  </div>
+                </div>
+              `
+            )
+          }
+        </div>
+      </button>`;
   }
 }
 customElements.define("drag-memory", DragMemoryComponent);
