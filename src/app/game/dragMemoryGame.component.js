@@ -308,6 +308,7 @@ export class DragMemoryComponent extends LitElement {
     return html`<h1 class="game-title">Are you a winner?</h1>
       <button
         id="start"
+        data-cy="start"
         class="overlay-text visible"
         @click="${(e) => {
           this.removeClass(e);
@@ -329,8 +330,12 @@ export class DragMemoryComponent extends LitElement {
           ${
             this.queensGame &&
             this.queensGame.map(
-              (queenGame) => html`
-                <div class="game-card ">
+              (queenGame, index) => html`
+                <div
+                  class="game-card "
+                  id="Card${index}"
+                  data-cy="Card${index}"
+                >
                   <div class="card-back card-face">
                     <img
                       class="back-img"
