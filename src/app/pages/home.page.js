@@ -8,24 +8,27 @@ export class HomePage extends LitElement {
     return css`
       .main {
         font-family: "Kotta One", serif;
+        margin: 0;
       }
       .main-title {
         text-align: center;
         font-family: "Niconne";
         color: darkred;
         font-size: xx-large;
+        margin: 0;
+        margin-top: 0.4rem;
       }
       .main-title2 {
         text-align: center;
         color: #2b1010;
+        margin: 0;
       }
       .main-content {
         display: flex;
         flex-direction: column;
-        margin: 1em;
+        padding: 0.5rem;
       }
       .main-content_text {
-        width: 100%;
         text-align: left;
         line-height: 200%;
         color: #2b1010;
@@ -36,17 +39,7 @@ export class HomePage extends LitElement {
         border-radius: 50%;
         position: relative;
       }
-      .main-button {
-        height: 3rem;
-        width: 10rem;
-        position: relative;
-        left: 25%;
-        top: -10px;
-        border-radius: 30%;
-        background-color: var(--btn-color, #36f279);
-        border-style: none;
-        box-shadow: 5px 3px 7px var(--btn-shadow-color, #80af90);
-      }
+
       @media (min-width: 600px) and (max-width: 1000px) {
         .main-content_image {
           left: 300px;
