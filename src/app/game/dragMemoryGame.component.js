@@ -307,12 +307,12 @@ export class DragMemoryComponent extends LitElement {
   render() {
     return html`<h1 class="game-title">Are you a winner?</h1>
       <button
-        id="boton"
+        id="start"
         class="overlay-text visible"
         @click="${(e) => {
           this.removeClass(e);
         }}"
-      ></button>
+      >Click to start</button>
         <button
           id="victory"
           class="overlay-text"
