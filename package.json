@@ -7,7 +7,7 @@
     "prepare": "husky install",
     "start": "webpack serve --config=webpack.dev.js",
     "build": "webpack --config=webpack.prod.js",
-    "test": "jest --coverage",
+    "test": "jest --coverage --env=jsdom",
     "lint": "semistandard --fix"
   },
   "commitlint": {
@@ -27,8 +27,12 @@
   },
   "jest": {
     "transform": {
-      "^.+\\.[t|j]sx?$": "babel-jest"
-    }
+      "^.+\\.[t|j]sx?$": "babel-jest",
+      "\\.js$": "<rootDir>/node_modules/babel-jest"
+    },
+    "transformIgnorePatterns": [
+      "node_module/(?!(lit-element|lit-html|lit|@lit/ractive-element)/)"   
+    ]
   },
   "browserslist": [
     "defaults",
@@ -57,5 +61,13 @@
     "webpack-cli": "^4.7.0",
     "webpack-dev-server": "^3.11.2",
     "webpack-merge": "^5.7.3"
+  },
+  "dependencies": {
+    "@vaadin/router": "^1.7.4",
+    "animated-text-arantxadr": "^0.0.1",
+    "axios": "^0.21.1",
+    "file-loader": "^6.2.0",
+    "lit": "^2.0.0-rc.2",
+    "random-drag-hashtags": "^0.1.2"
   }
 }

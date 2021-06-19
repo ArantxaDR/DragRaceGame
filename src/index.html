@@ -4,9 +4,34 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Niconne&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kotta+One&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="./assets/images/favicon.ico" />
+    <title>Drag Race</title>
   </head>
   <body>
-    <h1>Vanilla</h1>
+    <holy-layout>
+      <header slot="header">
+        <h1>RuPaul's DragRace</h1>
+      </header>
+      <nav slot="nav">
+        <a href="/">Home</a>
+        <a href="/queens">Queens</a>
+        <a href="/game">Game</a>
+      </nav>
+      <main slot="section" id="outlet"></main>
+      <footer slot="footer">
+        <small>Made whith &#128132; by ArantxaDR &#169;2021 </small>
+      </footer>
+    </holy-layout>
   </body>
 </html>
