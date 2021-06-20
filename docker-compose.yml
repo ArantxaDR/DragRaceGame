@@ -1,0 +1,11 @@
+version: "3.7"
+services:
+  web:
+    build: ./
+    image: arantxadr/drag-race-game:1.0.0
+    ports:
+      - "80:80"
+    volumes:
+      - html_data:/var/www/html
+volumes:
+  html_data:
