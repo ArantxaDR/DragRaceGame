@@ -1,4 +1,4 @@
-# RuPaul's DragRace Game
+# RuPaul's DragRace Game 👠
 
 ## Start the project:
 
@@ -10,26 +10,27 @@
 
 A project to show what I've ñearn during GenK course:
 
-    • Use docker to build an image
+    • Use docker to build an image 🐋
     • Use Webcomponent and Lit to build the project
     • Create a reusable Webcomponent and publish it in npm
-    • Use jest to test the code
+    • Use jest to test the code ✅
     • Use Cypress to test end-to-end experience
-    • Use git and GitLab
+    • Use git and GitLab 🦊
 
 To make this project I have:
 
-    • Design the appearance of the project and organization of content in sections
-    • Development of the JS code within Lit for the functionalities required in the portfolio
-    • Run test to ensure code operation
+    • Design the appearance of the project and organization of content in sections 🖌️
+    • Development of the JS code within Lit for the functionalities required
+    • Run test to ensure code operation ✅
     • Layout of the web
+    • Use Docker to build an image of the web 🐋
 
 ### Improvements
 
 The next steps to make a better proyect:
 
-    • Increase dificulty level
-    • Add a timer to show how much time to finish the game
+    • Increase dificulty level 🔝
+    • Add a timer to show how much time to finish the game ⏰
     • Add a flip counter to show how many clicks the user makes
-    • Add a Game Over display ans restart the game
+    • Add a Game Over display ans restart the game 🎮
     • Add new games, maybe a personality test
