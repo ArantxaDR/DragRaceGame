@@ -8,7 +8,7 @@
 
 ### Description
 
-A project to show what I've ñearn during GenK course:
+A project to show what I've learn during GenK course:
 
     • Use docker to build an image 🐋
     • Use Webcomponent and Lit to build the project
